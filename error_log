@@ -1,2 +1,0 @@
-[30-Nov-2020 17:50:38 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home/lifeoksh/dev.lifeokshop.com/vendor/zendframework/zend-diactoros/src/functions/marshal_uri_from_sapi.php on line 83
-[30-Nov-2020 17:51:16 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home/lifeoksh/dev.lifeokshop.com/vendor/zendframework/zend-diactoros/src/functions/marshal_uri_from_sapi.php on line 83
