@@ -546,12 +546,12 @@ select + .select2-container {
 .logo-bar-icons .nav-cart-box .nav-box-link {
     display: block;
     position: relative;
-    color: #288b2e;
+    /* color: #288b2e; */
     padding: 3px 0;
     width: 39px;
     height: 39px;
-    border-radius: 10%;
-    border: 2px solid #288b2e;
+    border-radius: 50%;
+    /* border: 2px solid #3E3F3E; */
    /* background: #288b2e;*/
 }
 .logo-bar-icons .nav-search-box .nav-box-icon,
@@ -1664,10 +1664,10 @@ button.paction.add-compare:hover {
 }
 
 .footer {
-    background: #288b2e;
+    background: #0E0E0E;
 }
 .footer .footer-bottom {
-    background: #288b2e;
+    background: #0E0E0E;
 }
 .product-card-2 {
     transition: all 0.3s;

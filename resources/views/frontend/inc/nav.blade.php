@@ -81,7 +81,7 @@
                             {{--                            </ul>--}}
                         </li>
                         <li>
-                            <strong class="top-bar-item"><i class="fa fa-phone"></i> Hotline: +88 01760 18 32 11 | <i class="fa fa-clock-o"></i> 9 AM to 11 PM</strong>
+                            <strong class="top-bar-item"><i class="fa fa-phone"></i> Hotline: 0000 | <i class="fa fa-clock-o"></i> 9 AM to 11 PM</strong>
                         </li>
                     </ul>
                 </div>
@@ -480,20 +480,20 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="d-lg-inline-block d-none">
+                            <!-- <div class="d-lg-inline-block d-none">
                                 <div>
                                     <a target="_blank" href="https://play.google.com/store/apps/details?id=com.lifeok.shop" class="nav-box-link">
                                         <img src="{{my_asset('img/google-play.svg')}}" alt="">
                                     </a>
                                 </div>
-                            </div>
-                            <div class="d-lg-inline-block ml-2 d-none">
+                            </div> -->
+                            <!-- <div class="d-lg-inline-block ml-2 d-none">
                                 <div>
                                     <a target="_blank" href="https://apps.apple.com/us/app/life-ok-shop/id1571960665#?platform=iphone" class="nav-box-link">
                                         <img src="{{my_asset('img/apple.svg')}}" alt="">
                                     </a>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="logo-bar-icons d-inline-block ml-auto">
                                 <div class="d-inline-block d-lg-none">
                                     <div class="nav-search-box">

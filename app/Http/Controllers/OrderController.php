@@ -371,6 +371,14 @@ class OrderController extends Controller
                 UserInfo::smsAPI("88" . $userData->phone, $text);
             }
 
+            $folderPath = public_path('invoices');
+
+            if (!file_exists($folderPath)) {
+                mkdir($folderPath, 0775, true);
+            }
+            $sanitizedFileName = 'Order_' . $order->code . '.pdf';
+            $filePath = $folderPath . '/' . $sanitizedFileName;
+
             //stores the pdf for invoice
             $pdf = PDF::setOptions([
                 'isHtml5ParserEnabled' => true,
@@ -379,14 +387,14 @@ class OrderController extends Controller
                 'tempDir' => storage_path('logs/')
             ])->loadView('invoices.customer_invoice', compact('order'));
             $output = $pdf->output();
-            file_put_contents('public/invoices/' . 'Order#' . $order->code . '.pdf', $output);
+            file_put_contents($filePath, $output);
 
             $array['view'] = 'emails.invoice';
             $array['subject'] = 'Order Placed - ' . $order->code;
             $array['from'] = env('MAIL_USERNAME');
             $array['content'] = translate('Hi. A new order has been placed. Please check the attached invoice.');
-            $array['file'] = 'public/invoices/Order#' . $order->code . '.pdf';
-            $array['file_name'] = 'Order#' . $order->code . '.pdf';
+            $array['file'] = $filePath;
+            $array['file_name'] = $sanitizedFileName;
 
             foreach ($seller_products as $key => $seller_product) {
                 try {
