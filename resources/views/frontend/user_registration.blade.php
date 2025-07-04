@@ -45,22 +45,22 @@
                                                 <button class="btn btn-link p-0" type="button" onclick="toggleEmailPhone(this)">{{ translate('Use Email Instead') }}</button>
                                             </div>
                                         @else
-                                           {{-- <div class="form-group">
+                                           <div class="form-group">
                                                 <input type="email" class="h-auto form-control-lg form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('Email') }}" name="email">
                                                 @if ($errors->has('email'))
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('email') }}</strong>
                                                     </span>
                                                 @endif
-                                            </div>--}}
-                                            <div class="form-group phone-form-group mb-1">
+                                            </div>
+                                            <!-- <div class="form-group phone-form-group mb-1">
                                                 <input type="tel"  class="h-auto w-100 form-control-lg form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" value="{{ old('phone') }}" placeholder="Phone (e.g.017xxxxxxxxx)" name="phone" autocomplete="off">
                                                 @if ($errors->has('phone'))
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $errors->first('phone') }}</strong>
                                                     </span>
                                                 @endif
-                                            </div>
+                                            </div> -->
 
                                         @endif
 
@@ -78,7 +78,7 @@
                                             <input type="password" class="h-auto form-control-lg form-control" placeholder="{{  translate('Confirm Password') }}" name="password_confirmation">
                                         </div>
 
-                                        <div class="row" id="">
+                                        <!-- <div class="row" id="">
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label class="strong-600">{{ __('Referral Code') }} <small class="text-success">(Your friend's referral code)</small></label>
@@ -90,7 +90,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         @if(\App\BusinessSetting::where('type', 'google_recaptcha')->first()->value == 1)
                                             <div class="form-group">

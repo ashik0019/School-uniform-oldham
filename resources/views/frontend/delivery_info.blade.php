@@ -118,8 +118,8 @@
                                         <div class="col-md-6">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <h6 class="d-block text-success strong-700">Select your delivery city.</h6>
-                                                    <div class="d-none">
+                                                    <!-- <h6 class="d-block text-success strong-700">Select your delivery city.</h6> -->
+                                                    <!-- <div class="d-none">
                                                         <label class="d-flex align-items-center p-3 border rounded gry-bg c-pointer">
                                                             <input type="radio" name="shipping_type_admin" value="home_delivery" checked class="d-none" onchange="show_pickup_point(this)" data-target=".pickup_point_id_admin">
                                                             <span class="radio-box"></span>
@@ -129,20 +129,20 @@
                                                         </label>
                                                     </div>
 
-                                                    <label class="d-flex align-items-center p-3 border rounded gry-bg c-pointer">
-                                                        <input type="radio" name="shipping_charge" value="80" checked class="d-none" onchange="deliveryCity(this)" data-target="inside">
+                                                    <label class="d-flex align-items-center p-3 border rounded gry-bg c-pointer d-none">
+                                                        <input type="radio" name="shipping_charge" value="0" checked class="d-none" onchange="deliveryCity(this)" data-target="inside">
                                                         <span class="radio-box"></span>
                                                         <span class="d-block ml-2 strong-600">
-                                                           <strong> Inside Dhaka. ৳80</strong>
+                                                           <strong> Inside</strong>
                                                         </span>
                                                     </label>
                                                     <label class="d-flex align-items-center p-3 border rounded gry-bg c-pointer">
                                                         <input type="radio" name="shipping_charge" value="150"  class="d-none" onchange="deliveryCity(this)" data-target="outside">
                                                         <span class="radio-box"></span>
                                                         <span class="d-block ml-2 strong-600">
-                                                           <strong> Out Side Dhaka. ৳150</strong>
+                                                           <strong> Out Side </strong>
                                                         </span>
-                                                    </label>
+                                                    </label> -->
                                                 </div>
                                                 @if (\App\BusinessSetting::where('type', 'pickup_point')->first()->value == 1)
                                                     <div class="col-6">
@@ -298,7 +298,7 @@
         }
 
         function deliveryCity(el) {
-            var delivery_charge = 80;
+            var delivery_charge = 0;
             var target = $(el).data('target');
             if(target == 'inside'){
                 delivery_charge = $(el).val();
@@ -310,8 +310,8 @@
                 url: "{{url('/checkout/set/delivery/charge')}}/"+delivery_charge,
                 success:function(data){
                     console.log(data.total_price);
-                    document.getElementById("delivery_cost").innerText = '৳'+ data.delivery_charge+'.00';
-                    document.getElementById("dc_price_total").innerText = '৳'+ data.total_price+'.00';
+                    document.getElementById("delivery_cost").innerText = '£'+ data.delivery_charge+'.00';
+                    document.getElementById("dc_price_total").innerText = '£'+ data.total_price+'.00';
                     ///location.reload();
                 }
             });

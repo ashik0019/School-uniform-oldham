@@ -259,7 +259,7 @@
                                 <label>{{ translate('Phone')}}</label>
                             </div>
                             <div class="col-md-10">
-                                <input type="text" class="form-control mb-3" placeholder="{{ translate('+880')}}" name="phone" value="" required>
+                                <input type="text" class="form-control mb-3" placeholder="{{ translate('Phone Number')}}" name="phone" value="" required>
                             </div>
                         </div>
                     </div>

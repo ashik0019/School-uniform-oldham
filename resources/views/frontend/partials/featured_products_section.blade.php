@@ -17,7 +17,7 @@
                                     <div class="card-image">
                                         @if ($product->discount > 0)
                                             @if($product->discount_type == 'amount')
-                                                <div class="badge-offer">{{$product->discount}}tk off</div>
+                                                <div class="badge-offer">{{format_price(convert_price($product->discount))}} off</div>
                                             @else
                                                 <div class="badge-offer">{{$product->discount}}% off</div>
                                             @endif

@@ -37,7 +37,7 @@
             margin-top: 1rem;
             margin-bottom: 1rem;
             border: 0;
-            border-top: 1px solid rgb(76 217 100)!important;
+            border-top: 1px solid #ddd!important;
         }
         ul.features {
             margin: 0;
@@ -49,7 +49,7 @@
         }
         .feature-inner {
             padding: 12px 10px;
-            border: 1px solid #4cd964;
+            border: 1px solid #ddd;
             background: #f5f5f5;
             display: flex;
             align-items: center;
@@ -158,12 +158,12 @@
 
                             <div class="row align-items-center">
                                 <div class="sold-by col-auto">
-                                    <small class="mr-2">{{ translate('Product by')}}: </small><br>
-                                    @if ($detailedProduct->added_by == 'seller' && \App\BusinessSetting::where('type', 'vendor_system_activation')->first()->value == 1)
+                                    <p class="mt-0 p-0">{{ translate('Product by')}}: </p>
+                                    <!-- @if ($detailedProduct->added_by == 'seller' && \App\BusinessSetting::where('type', 'vendor_system_activation')->first()->value == 1)
                                         <a href="{{ route('shop.visit', $detailedProduct->user->shop->slug) }}">{{ $detailedProduct->user->shop->name }}</a>
                                     @else
                                         {{  translate('Life Ok') }}
-                                    @endif
+                                    @endif -->
                                 </div>
                                 @if (\App\BusinessSetting::where('type', 'conversation_system')->first()->value == 1)
                                     <div class="col-auto">
@@ -173,8 +173,8 @@
 
                                 @if ($detailedProduct->brand != null)
                                     <div class="col-auto">
-                                        <a href="{{ route('products.brand', $detailedProduct->category->slug) }}">{{$detailedProduct->brand->name}}  <img src="{{ my_asset($detailedProduct->brand->logo) }}" alt="{{ $detailedProduct->brand->name }}" height="30"> </a> || Category: <a href="{{ route('products.category', $detailedProduct->category->slug) }}">{{ $detailedProduct->category->name }}</a> || Subcategory:  <a href="{{ route('products.subcategory', $detailedProduct->subcategory->slug) }}">{{ $detailedProduct->subcategory->name }}</a>
-                                        @if(!empty($detailedProduct->subsubcategory))<div class=""> Sub ChildCategory: <a href="{{ route('products.subsubcategory', !empty($detailedProduct->subsubcategory)? $detailedProduct->subsubcategory->slug : '') }}">{{!empty($detailedProduct->subsubcategory)? $detailedProduct->subsubcategory->name : '' }}</a></div>@endif
+                                        Brand: <a href="{{ route('products.brand', $detailedProduct->category->slug) }}">{{$detailedProduct->brand->name}} </a> | Category: <a href="{{ route('products.category', $detailedProduct->category->slug) }}">{{ $detailedProduct->category->name }}</a> | Subcategory:  <a href="{{ route('products.subcategory', $detailedProduct->subcategory->slug) }}">{{ $detailedProduct->subcategory->name }}</a>
+                                        @if(!empty($detailedProduct->subsubcategory))<div class="">Child Category: <a href="{{ route('products.subsubcategory', !empty($detailedProduct->subsubcategory)? $detailedProduct->subsubcategory->slug : '') }}">{{!empty($detailedProduct->subsubcategory)? $detailedProduct->subsubcategory->name : '' }}</a></div>@endif
                                     </div>
                                 @endif
                             </div>
@@ -353,10 +353,10 @@
                                         <i class="la la-facebook"></i>
                                         <span class="d-none d-md-inline-block">Facebook</span>
                                     </a>--}}
-                                    <a href="tel:+8801760183211" class="btn btn-styled btn-alt-base-1 bg-primary c-white btn-icon-left strong-700 hov-bounce hov-shaddow ml-2 add-to-cart">
+                                    <!-- <a href="tel:+8801760183211" class="btn btn-styled btn-alt-base-1 bg-primary c-white btn-icon-left strong-700 hov-bounce hov-shaddow ml-2 add-to-cart">
                                         <i class="la la-phone"></i>
                                         <span class="d-none d-md-inline-block">Call Now</span>
-                                    </a>
+                                    </a> -->
                                 </div>
                             </div>
 
@@ -441,13 +441,13 @@
                                                 <i class="fa fa-truck"></i>
                                             </div>
                                             <div class="feature-info">
-                                                <h3 class="feature-title">Inside Dhaka</h3>
-                                                <span class="feature-desc">Shipping Charge Inside Dhaka 80tk</span>
-                                                <span class="feature-desc">Delivery Time 2/3 Day</span>
+                                                <h3 class="feature-title">Shipping Cost</h3>
+                                                <span class="feature-desc">Shipping Cost £0</span>
+                                                <span class="feature-desc">Delivery Time 2/3 Working Days</span>
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="feature">
+                                    <!-- <li class="feature">
                                         <div class="feature-inner">
                                             <div class="feature-thumbnail">
                                                 <i class="fa fa-truck"></i>
@@ -458,7 +458,7 @@
                                                 <span class="feature-desc">Delivery Time 2/5 Day</span>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li> -->
                                     <li class="feature">
                                         <div class="feature-inner">
                                             <div class="feature-thumbnail">
@@ -477,7 +477,7 @@
                                             </div>
                                             <div class="feature-info">
                                                 <h3 class="feature-title">Online Support 24/7</h3>
-                                                <span class="feature-desc">support@lifeokshop.com</span>
+                                                <span class="feature-desc">support@schooluniformoldham.co.uk</span>
                                             </div>
                                         </div>
                                     </li>
@@ -488,7 +488,7 @@
                                             </div>
                                             <div class="feature-info">
                                                 <h3 class="feature-title">Hotline 24/7</h3>
-                                                <span class="feature-desc">+8801760183211</span>
+                                                <span class="feature-desc">00000000000</span>
                                             </div>
                                         </div>
                                     </li>

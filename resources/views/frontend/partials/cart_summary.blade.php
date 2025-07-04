@@ -143,10 +143,10 @@
                 </div>
             @endif
         @endif
-        <div>
+        <!-- <div>
             @if (Request::is('checkout') || Request::is('cart'))
             <p class="mt-2 text-success"><i class="fa fa-info-circle text-info"></i> Note: Delivery charge will be add after select delivery Area.</p>
             @endif
-        </div>
+        </div> -->
     </div>
 </div>

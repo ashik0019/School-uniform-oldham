@@ -68,7 +68,7 @@
                         <option value="on_delivery">On Delivery</option>
                         <option value="delivered">Delivered</option>
                         <option value="cancel">Cancel</option>
-                        <option value="print_all_invoice">Print Selected Invoice</option>
+                        <!-- <option value="print_all_invoice">Print Selected Invoice</option> -->
                         <option value="paid">Paid</option>
                         <option value="unpaid">Unpaid</option>
                         <option value="delete">Delete Selected Invoice</option>
