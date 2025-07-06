@@ -182,6 +182,8 @@
         </div>
     </section>
 
+
+    
     <!-- Modal -->
     <div class="modal fade" id="GuestCheckout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-zoom" role="document">
