@@ -31,7 +31,7 @@
                     <!-- dashboard content -->
                     <div class="">
                         <div class="row">
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                 <div class="dashboard-widget text-center bg-dark text-white mt-4 c-pointer">
                                     <i class="fa fa-dollar"></i>
                                     <span class="d-block title heading-3 strong-400">{{ single_price(Auth::user()->balance) }}</span>
@@ -39,7 +39,7 @@
                                     <span class="d-block sub-title">{{  translate('You can use this balance when you purchase product from here.') }}</span>
 
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-4">
                                 <div class="dashboard-widget text-center green-widget mt-4 c-pointer">
                                     <a href="javascript:;" class="d-block">

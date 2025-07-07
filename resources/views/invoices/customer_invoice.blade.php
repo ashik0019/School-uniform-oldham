@@ -117,7 +117,7 @@
 				<thead>
 	                <tr class="gry-color" style="background: #eceff4;">
 	                    <th width="35%">{{ translate('Product Name') }}</th>
-						<th width="15%">{{ translate('Delivery Type') }}</th>
+						<!-- <th width="15%">{{ translate('Delivery Type') }}</th> -->
 	                    <th width="10%">{{ translate('Qty') }}</th>
 	                    <th width="15%">{{ translate('Unit Price') }}</th>
 	                    <th width="10%">{{ translate('Tax') }}</th>
@@ -129,7 +129,7 @@
 		                @if ($orderDetail->product != null)
 							<tr class="">
 								<td>{{ $orderDetail->product->name }} @if($orderDetail->variation != null) ({{ $orderDetail->variation }}) @endif</td>
-								<td>
+								<!-- <td>
 									@if ($orderDetail->shipping_type != null && $orderDetail->shipping_type == 'home_delivery')
 										{{ translate('Home Delivery') }}
 									@elseif ($orderDetail->shipping_type == 'pickup_point')
@@ -137,7 +137,7 @@
 											{{ $orderDetail->pickup_point->name }} ({{ translate('Pickip Point') }})
 										@endif
 									@endif
-								</td>
+								</td> -->
 								<td class="gry-color">{{ $orderDetail->quantity }}</td>
 								<td class="gry-color currency">{{ single_price($orderDetail->price/$orderDetail->quantity) }}</td>
 								<td class="gry-color currency">{{ single_price($orderDetail->tax/$orderDetail->quantity) }}</td>

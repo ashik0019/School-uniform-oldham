@@ -466,7 +466,7 @@
                                             </div>
                                             <div class="feature-info">
                                                 <h3 class="feature-title">Secure Online Payment</h3>
-                                                <span class="feature-desc">support@lifeokshop.com</span>
+                                                <span class="feature-desc">support@schooluniformoldham.co.uk</span>
                                             </div>
                                         </div>
                                     </li>
