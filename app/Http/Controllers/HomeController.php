@@ -92,8 +92,6 @@ class HomeController extends Controller
         }
 
 
-
-        
         //create session
         Session::put('email', $request->email);
         Session::put('password', $request->password);
