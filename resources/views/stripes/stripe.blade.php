@@ -7,7 +7,6 @@
             <div class="panel-heading">
                 <h3 class="panel-title">{{translate('Stripe Payment')}}</h3>
             </div>
-
             <!--Horizontal Form-->
             <!--===================================================-->
             <form class="form-horizontal require-validation" role="form" action="{{ route('stripe.post') }}" method="post"
