@@ -261,7 +261,6 @@ class HomeController extends Controller
 
 
 
-    
     public function profile(Request $request)
     {
         if (Auth::user()->user_type == 'customer') {
