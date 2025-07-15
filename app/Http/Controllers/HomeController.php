@@ -275,7 +275,6 @@ class HomeController extends Controller
             flash(translate('Sorry! the action is not permitted in demo '))->error();
             return back();
         }
-
         $user = Auth::user();
         $user->name = $request->name;
         $user->address = $request->address;
