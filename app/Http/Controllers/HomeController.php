@@ -268,6 +268,8 @@ class HomeController extends Controller
         }
     }
 
+
+
     
     public function customer_update_profile(Request $request)
     {
