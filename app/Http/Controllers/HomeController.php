@@ -268,7 +268,6 @@ class HomeController extends Controller
         }
     }
 
-
     public function customer_update_profile(Request $request)
     {
         if (env('DEMO_MODE') == 'On') {
