@@ -243,7 +243,6 @@ class HomeController extends Controller
         return view('dashboard');
     }
 
-
     /**
      * Show the customer/seller dashboard.
      *
