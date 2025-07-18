@@ -247,7 +247,6 @@ class HomeController extends Controller
 
 
 
-    
     /**
      * Show the customer/seller dashboard.
      *
