@@ -300,7 +300,6 @@ class HomeController extends Controller
     }
     
 
-    
 
     public function seller_update_profile(Request $request)
     {
