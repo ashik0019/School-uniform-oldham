@@ -298,7 +298,6 @@ class HomeController extends Controller
         flash(translate('Sorry! Something went wrong.'))->error();
         return back();
     }
-
     
 
     public function seller_update_profile(Request $request)
