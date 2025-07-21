@@ -299,6 +299,7 @@ class HomeController extends Controller
         return back();
     }
 
+    
 
     public function seller_update_profile(Request $request)
     {
