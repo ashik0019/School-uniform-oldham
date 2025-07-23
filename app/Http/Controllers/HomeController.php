@@ -223,7 +223,6 @@ class HomeController extends Controller
         return back();
     }
 
-
     /**
      * Create a new controller instance.
      *
