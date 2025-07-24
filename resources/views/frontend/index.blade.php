@@ -20,7 +20,7 @@
                                     <span class="cat-name">{{ translate('All') }} <br> {{ translate('Categories') }}</span>
                                 </a>
                             </li>
-                             @foreach (\App\Category::all()->take(11) as $key => $category)
+                             @foreach (\App\Category::where('name', '!=', 'Universal')->take(8)->get() as $key => $category)
                                 @php
                                    $brands = array();
                                 @endphp

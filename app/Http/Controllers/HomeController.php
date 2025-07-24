@@ -298,7 +298,7 @@ class HomeController extends Controller
         flash(translate('Sorry! Something went wrong.'))->error();
         return back();
     }
-    
+
 
 
     public function seller_update_profile(Request $request)
@@ -531,6 +531,7 @@ class HomeController extends Controller
 
         $conditions = ['published' => 1];
 
+
         if ($brand_id != null) {
             $conditions = array_merge($conditions, ['brand_id' => $brand_id]);
         }
@@ -539,6 +540,12 @@ class HomeController extends Controller
         }
         if ($subcategory_id != null) {
             $conditions = array_merge($conditions, ['subcategory_id' => $subcategory_id]);
+            // $subCat = SubCategory::where('slug', $request->subcategory)->first();
+            // if ($subCat->universal == 1) {
+            //     $catId = Category::where('name', 'Universal')->first()->id;
+            //     //dd($catId);
+            //     $conditions['category_id'] = $catId;
+            // }
         }
         if ($subsubcategory_id != null) {
             $conditions = array_merge($conditions, ['subsubcategory_id' => $subsubcategory_id]);
@@ -546,6 +553,7 @@ class HomeController extends Controller
         if ($seller_id != null) {
             $conditions = array_merge($conditions, ['user_id' => Seller::findOrFail($seller_id)->user->id]);
         }
+        //dd($conditions);
 
         $products = Product::where($conditions);
 
@@ -659,8 +667,57 @@ class HomeController extends Controller
             $selected_color = $request->color;
         }
 
+        // $products = filter_products($products)->paginate(12)->appends(request()->query());
 
-        $products = filter_products($products)->paginate(12)->appends(request()->query());
+        $productsA = filter_products($products)->get();
+
+        // Universal
+        $productsB = collect();
+        if ($subcategory_id != null) {
+            $subCat = SubCategory::where('slug', $request->subcategory)->first();
+            if ($subCat->universal == 1) {
+                $catId = Category::where('name', 'Universal')->first()->id;
+                $productsB = Product::where([
+                    'published' => 1,
+                    'category_id' => $catId
+                ])->get();
+            }
+        }
+
+        // Merge
+        $merged = $productsA->merge($productsB)->unique('id');
+
+        // Sort
+        if ($sort_by != null) {
+            switch ($sort_by) {
+                case '1':
+                    $merged = $merged->sortByDesc('created_at');
+                    break;
+                case '2':
+                    $merged = $merged->sortBy('created_at');
+                    break;
+                case '3':
+                    $merged = $merged->sortBy('unit_price');
+                    break;
+                case '4':
+                    $merged = $merged->sortByDesc('unit_price');
+                    break;
+            }
+        }
+
+        // Paginate
+        $page = request('page', 1);
+        $perPage = 12;
+
+        $paged = $merged->forPage($page, $perPage);
+
+        $products = new \Illuminate\Pagination\LengthAwarePaginator(
+            $paged,
+            $merged->count(),
+            $perPage,
+            $page,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
 
         return view('frontend.product_listing', compact('products', 'query', 'category_id', 'subcategory_id', 'subsubcategory_id', 'brand_id', 'sort_by', 'seller_id', 'min_price', 'max_price', 'attributes', 'selected_attributes', 'all_colors', 'selected_color'));
     }

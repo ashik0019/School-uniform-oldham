@@ -11,7 +11,7 @@
         <!--Horizontal Form-->
         <!--===================================================-->
         <form class="form-horizontal" action="{{ route('subcategories.store') }}" method="POST" enctype="multipart/form-data">
-        	@csrf
+            @csrf
             <div class="panel-body">
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="name">{{translate('Name')}}</label>
@@ -24,8 +24,18 @@
                     <div class="col-sm-9">
                         <select name="category_id" required class="form-control demo-select2-placeholder">
                             @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{__($category->name)}}</option>
+                            <option value="{{$category->id}}">{{__($category->name)}}</option>
                             @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="name">{{translate('Show Universal Products')}}</label>
+                    <div class="col-sm-9">
+                        <select name="universal" required class="form-control demo-select2-placeholder">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                          
                         </select>
                     </div>
                 </div>

@@ -19,11 +19,11 @@ class SubCategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $sort_search =null;
+        $sort_search = null;
         $subcategories = SubCategory::orderBy('created_at', 'desc');
-        if ($request->has('search')){
+        if ($request->has('search')) {
             $sort_search = $request->search;
-            $subcategories = $subcategories->where('name', 'like', '%'.$sort_search.'%');
+            $subcategories = $subcategories->where('name', 'like', '%' . $sort_search . '%');
         }
         $subcategories = $subcategories->paginate(15);
         return view('subcategories.index', compact('subcategories', 'sort_search'));
@@ -51,24 +51,23 @@ class SubCategoryController extends Controller
         $subcategory = new SubCategory;
         $subcategory->name = $request->name;
         $subcategory->category_id = $request->category_id;
+        $subcategory->universal = $request->universal;
         $subcategory->meta_title = $request->meta_title;
         $subcategory->meta_description = $request->meta_description;
         if ($request->slug != null) {
             $subcategory->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->slug));
-        }
-        else {
-            $subcategory->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name)).'-'.Str::random(5);
+        } else {
+            $subcategory->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name)) . '-' . Str::random(5);
         }
 
         $data = openJSONFile('en');
         $data[$subcategory->name] = $subcategory->name;
         saveJSONFile('en', $data);
 
-        if($subcategory->save()){
+        if ($subcategory->save()) {
             flash(translate('Subcategory has been inserted successfully'))->success();
             return redirect()->route('subcategories.index');
-        }
-        else{
+        } else {
             flash(translate('Something went wrong'))->error();
             return back();
         }
@@ -118,20 +117,19 @@ class SubCategoryController extends Controller
 
         $subcategory->name = $request->name;
         $subcategory->category_id = $request->category_id;
+        $subcategory->universal = $request->universal;
         $subcategory->meta_title = $request->meta_title;
         $subcategory->meta_description = $request->meta_description;
         if ($request->slug != null) {
             $subcategory->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->slug));
-        }
-        else {
-            $subcategory->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name)).'-'.Str::random(5);
+        } else {
+            $subcategory->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name)) . '-' . Str::random(5);
         }
 
-        if($subcategory->save()){
+        if ($subcategory->save()) {
             flash(translate('Subcategory has been updated successfully'))->success();
             return redirect()->route('subcategories.index');
-        }
-        else{
+        } else {
             flash(translate('Something went wrong'))->error();
             return back();
         }
@@ -150,7 +148,7 @@ class SubCategoryController extends Controller
             $subsubcategory->delete();
         }
         Product::where('subcategory_id', $subcategory->id)->delete();
-        if(SubCategory::destroy($id)){
+        if (SubCategory::destroy($id)) {
             foreach (Language::all() as $key => $language) {
                 $data = openJSONFile($language->code);
                 unset($data[$subcategory->name]);
@@ -158,11 +156,20 @@ class SubCategoryController extends Controller
             }
             flash(translate('Subcategory has been deleted successfully'))->success();
             return redirect()->route('subcategories.index');
-        }
-        else{
+        } else {
             flash(translate('Something went wrong'))->error();
             return back();
         }
+    }
+
+    public function updateUniversal(Request $request)
+    {
+        $subcategories = SubCategory::findOrFail($request->id);
+        $subcategories->universal = $request->universal;
+        if ($subcategories->save()) {
+            return 1;
+        }
+        return 0;
     }
 
 
