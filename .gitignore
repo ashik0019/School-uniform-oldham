@@ -15,7 +15,7 @@ npm-debug.log
 yarn-error.log
 .DS_Store
 .idea/
-
+.env
 updates/
 /public/uploads/
 composer.lock
