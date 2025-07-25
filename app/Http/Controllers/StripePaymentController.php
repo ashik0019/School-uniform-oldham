@@ -24,15 +24,13 @@ class StripePaymentController extends Controller
      */
     public function stripe()
     {
-        if(Session::has('payment_type')){
-            if(Session::get('payment_type') == 'cart_payment' || Session::get('payment_type') == 'wallet_payment'){
+        if (Session::has('payment_type')) {
+            if (Session::get('payment_type') == 'cart_payment' || Session::get('payment_type') == 'wallet_payment') {
                 return view('frontend.payment.stripe');
-            }
-            elseif (Session::get('payment_type') == 'customer_package_payment') {
+            } elseif (Session::get('payment_type') == 'customer_package_payment') {
                 $customer_package = CustomerPackage::findOrFail(Session::get('payment_data')['customer_package_id']);
                 return view('frontend.payment.stripe', compact('customer_package'));
-            }
-            elseif (Session::get('payment_type') == 'seller_package_payment') {
+            } elseif (Session::get('payment_type') == 'seller_package_payment') {
                 $seller_package = SellerPackage::findOrFail(Session::get('payment_data')['seller_package_id']);
                 return view('frontend.payment.stripe', compact('seller_package'));
             }
@@ -44,37 +42,38 @@ class StripePaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     function stripePost(Request $request)
+    function stripePost(Request $request)
     {
-        if($request->session()->has('payment_type')){
-            if($request->session()->get('payment_type') == 'cart_payment'){
+        if ($request->session()->has('payment_type')) {
+            if ($request->session()->get('payment_type') == 'cart_payment') {
                 $order = Order::findOrFail(Session::get('order_id'));
-
+               // dd(env('STRIPE_SECRET'));
                 Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
                 try {
-                    $payment = json_encode(Stripe\Charge::create ([
-                            "amount" => round(convert_to_usd($order->grand_total) * 100),
-                            "currency" => "usd",
-                            "source" => $request->stripeToken
+                    $payment = json_encode(Stripe\Charge::create([
+                        "amount" => round(convert_to_usd($order->grand_total) * 100),
+                        "currency" => "usd",
+                        "source" => $request->stripeToken
                     ]));
+                    //dd($payment);
                 } catch (\Exception $e) {
                     flash($e->getMessage())->error();
+                   // dd($e);
                     return redirect()->route('checkout.payment_info');
                 }
 
 
                 $checkoutController = new CheckoutController;
                 return $checkoutController->checkout_done($request->session()->get('order_id'), $payment);
-            }
-            elseif ($request->session()->get('payment_type') == 'wallet_payment') {
+            } elseif ($request->session()->get('payment_type') == 'wallet_payment') {
                 Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
                 try {
-                    $payment = json_encode(Stripe\Charge::create ([
-                            "amount" => round(convert_to_usd($request->session()->get('payment_data')['amount']) * 100),
-                            "currency" => "usd",
-                            "source" => $request->stripeToken
+                    $payment = json_encode(Stripe\Charge::create([
+                        "amount" => round(convert_to_usd($request->session()->get('payment_data')['amount']) * 100),
+                        "currency" => "usd",
+                        "source" => $request->stripeToken
                     ]));
                 } catch (\Exception $e) {
                     flash($e->getMessage())->error();
@@ -84,16 +83,15 @@ class StripePaymentController extends Controller
 
                 $walletController = new WalletController;
                 return $walletController->wallet_payment_done($request->session()->get('payment_data'), $payment);
-            }
-            elseif ($request->session()->get('payment_type') == 'customer_package_payment') {
+            } elseif ($request->session()->get('payment_type') == 'customer_package_payment') {
                 Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
                 $customer_package = CustomerPackage::findOrFail(Session::get('payment_data')['customer_package_id']);
 
                 try {
-                    $payment = json_encode(Stripe\Charge::create ([
-                            "amount" => round(convert_to_usd($customer_package->amount) * 100),
-                            "currency" => "usd",
-                            "source" => $request->stripeToken
+                    $payment = json_encode(Stripe\Charge::create([
+                        "amount" => round(convert_to_usd($customer_package->amount) * 100),
+                        "currency" => "usd",
+                        "source" => $request->stripeToken
                     ]));
                 } catch (\Exception $e) {
                     flash($e->getMessage())->error();
@@ -103,16 +101,15 @@ class StripePaymentController extends Controller
 
                 $customer_package_controller = new CustomerPackageController;
                 return $customer_package_controller->purchase_payment_done($request->session()->get('payment_data'), $payment);
-            }
-            elseif ($request->session()->get('payment_type') == 'seller_package_payment') {
+            } elseif ($request->session()->get('payment_type') == 'seller_package_payment') {
                 Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
                 $seller_package = SellerPackage::findOrFail(Session::get('payment_data')['seller_package_id']);
 
                 try {
-                    $payment = json_encode(Stripe\Charge::create ([
-                            "amount" => round(convert_to_usd($seller_package->amount) * 100),
-                            "currency" => "usd",
-                            "source" => $request->stripeToken
+                    $payment = json_encode(Stripe\Charge::create([
+                        "amount" => round(convert_to_usd($seller_package->amount) * 100),
+                        "currency" => "usd",
+                        "source" => $request->stripeToken
                     ]));
                 } catch (\Exception $e) {
                     flash($e->getMessage())->error();

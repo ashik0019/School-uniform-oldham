@@ -659,6 +659,7 @@ class HomeController extends Controller
             }
         }
 
+        
         $selected_color = null;
 
         if ($request->has('color')) {
