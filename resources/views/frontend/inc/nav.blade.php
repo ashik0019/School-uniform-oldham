@@ -1,7 +1,6 @@
 
 <style>
-
-    .nav-pills .nav-item:first-child .nav-link {
+.nav-pills .nav-item:first-child .nav-link {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
     }
